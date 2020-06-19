@@ -1,0 +1,20 @@
+mylist = [1,2,4,0,0,7,5]
+
+def spygame(mylist):
+
+    if 0 in mylist:
+        k = mylist.index(0)
+        mylist= mylist[k+1:len(mylist)+1]
+        if 0 in mylist:
+            k = mylist.index(0)
+            mylist = mylist[k + 1:len(mylist) + 1]
+            if 7 in mylist:
+                print("true")
+            else:
+                print("false")
+        else:
+            print("false")
+    else:
+        print("false")
+
+spygame(mylist)
