@@ -1,0 +1,26 @@
+
+
+
+def pangram():
+    sentance = input("enter a sentance").lower()
+    words = sentance.split()
+    letters = {words[0][0]}
+    for x in  range(0,len(words)):
+
+        for y in range(0,len(words[x])):
+
+            letters.add(words[x][y])
+
+    if len(letters) ==26:
+        print(len(letters))
+        print("its a pangaram")
+        print(letters)
+    else:
+        print(len(letters))
+        print(letters)
+        print("its not a pangram")
+
+
+pangram()
+
+
