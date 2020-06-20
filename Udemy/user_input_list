@@ -1,0 +1,38 @@
+mylist = ["","",""]
+myrange =range(0,3)
+
+
+def play_again():
+    player_choice = input("do you want to continue  - (Y/N)")
+    if player_choice == "Y":
+        gameon()
+    elif player_choice == "N":
+
+        print("mylist changed to ",mylist)
+    else:
+        print("you did not enter a valid choice")
+        play_again()
+
+def gameon():
+
+    position =input("enter a postion(0,1,2)")
+
+
+    if position.isdigit() == False:
+        print("you did not enter a valid no.")
+        gameon()
+    elif int(position) not in myrange:
+        print("you did no enter a no. in range")
+        gameon()
+    elif position.isdigit() == True and int(position) in myrange:
+
+
+        newword = input("enter the number/word you want to add")
+
+        mylist[int(position)] = newword
+        play_again()
+
+
+
+
+gameon()
