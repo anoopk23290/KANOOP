@@ -1,0 +1,111 @@
+
+testboard = [0, 1, 2, 3, 4,5 , 6, 7, 8]
+
+def play():
+    print("this is our tiktaktoe board.Player 1 :X,player2 :O")
+    global positionof
+    global testboard
+
+
+    testboard = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    myrange = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    tries =0
+    v1 = f"|{testboard[0]} | {testboard[1]} | {testboard[2]} |"
+    v2 = f"|{testboard[3]} | {testboard[4]} | {testboard[5]} |"
+    v3 = f"|{testboard[6]} | {testboard[7]} | {testboard[8]} |"
+
+    lines = v1 + "\n" + v2 + "\n" + v3
+    print(lines)
+    while   match() == 0 and tries <=8:
+        if tries ==0 or tries%2 ==0:
+            positionof = input("Player1,enter position for X :")
+            while  positionof.isdigit() ==False or int(positionof) not in myrange:
+                positionof = input("wrong choice.enter again :")
+            testboard[int(positionof)] ="X"
+            v1 = f"|{testboard[0]} | {testboard[1]} | {testboard[2]} |"
+            v2 = f"|{testboard[3]} | {testboard[4]} | {testboard[5]} |"
+            v3 = f"|{testboard[6]} | {testboard[7]} | {testboard[8]} |"
+
+            lines = v1 + "\n" + v2 + "\n" + v3
+            print(lines)
+
+
+            tries =tries+1
+
+            myrange.remove(int(positionof))
+            match()
+
+
+        if tries%2 != 0:
+            positionof = input("Player2,enter position for O :")
+            while  positionof.isdigit() ==False or int(positionof) not in myrange:
+                positionof = input("wrong choice.enter again")
+
+            testboard[int(positionof)] ="O"
+            v1 = f"|{testboard[0]} | {testboard[1]} | {testboard[2]} |"
+            v2 = f"|{testboard[3]} | {testboard[4]} | {testboard[5]} |"
+            v3 = f"|{testboard[6]} | {testboard[7]} | {testboard[8]} |"
+
+            lines = v1 + "\n" + v2 + "\n" + v3
+            print(lines)
+            print(testboard)
+            tries = tries + 1
+
+            myrange.remove(int(positionof))
+
+            match()
+
+
+def match():
+    v=0
+    match_indices =[0]
+    match_values =[0]
+
+
+    for i in (0,1,2):
+        if testboard[i] == testboard[i+3] == testboard[i+6]:
+            v=v+1
+            match_indices = [i,i+3,i+6]
+            match_values =[testboard[i],testboard[i+3],testboard[i+6]]
+            print(match_values)
+            print(match_indices)
+            print("matching values are: ", match_values)
+            print("indices of them are: ", match_indices)
+
+
+    for i in (0,3,6):
+        if testboard[i] == testboard[i+1] ==testboard[i+2]:
+            v=v+1
+            match_indices = [i, i + 1, i + 2]
+            match_values = [testboard[i], testboard[i + 1], testboard[i + 2]]
+            print("matching values are: " ,match_values)
+            print("indices of them are: ",match_indices)
+
+    if testboard[0] == testboard[4] == testboard[8]:
+        v=v+1
+        match_indices = [0, 4, 8]
+        match_values = [testboard[0], testboard[4], testboard[8]]
+        print("matching values are: ", match_values)
+        print("indices of them are: ", match_indices)
+
+    if testboard[2] == testboard[4] == testboard[6]:
+        v = v + 1
+        match_indices = [2, 4, 6]
+        match_values = [testboard[2], testboard[4], testboard[6]]
+        print("matching values are: ", match_values)
+        print("indices of them are: ", match_indices)
+
+
+
+    if v>0:
+        print("there is a match")
+
+
+    if match_values[0] =="X":
+        print("player 1 wins -X")
+    elif match_values[0] == "O":
+        print("player 2 wins -O")
+    return(v)
+    print("value of v is ",v)
+
+play()
