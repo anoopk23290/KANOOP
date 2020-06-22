@@ -1,7 +1,8 @@
-
+from IPython.display import clear_output
 testboard = [0, 1, 2, 3, 4,5 , 6, 7, 8]
 
 def play():
+    clear_output()
     print("this is our tiktaktoe board.Player 1 :X,player2 :O")
     global positionof
     global testboard
@@ -27,6 +28,7 @@ def play():
             v3 = f"|{testboard[6]} | {testboard[7]} | {testboard[8]} |"
 
             lines = v1 + "\n" + v2 + "\n" + v3
+            clear_output()
             print(lines)
 
 
@@ -36,7 +38,7 @@ def play():
             match()
 
 
-        if tries%2 != 0:
+        if match() ==0 and tries%2 != 0:
             positionof = input("Player2,enter position for O :")
             while  positionof.isdigit() ==False or int(positionof) not in myrange:
                 positionof = input("wrong choice.enter again")
@@ -47,13 +49,16 @@ def play():
             v3 = f"|{testboard[6]} | {testboard[7]} | {testboard[8]} |"
 
             lines = v1 + "\n" + v2 + "\n" + v3
+            clear_output()
             print(lines)
-            print(testboard)
+
             tries = tries + 1
 
             myrange.remove(int(positionof))
 
             match()
+    if tries ==9:
+        print("Game ends here")
 
 
 def match():
@@ -81,6 +86,7 @@ def match():
             print("matching values are: " ,match_values)
             print("indices of them are: ",match_indices)
 
+
     if testboard[0] == testboard[4] == testboard[8]:
         v=v+1
         match_indices = [0, 4, 8]
@@ -106,6 +112,6 @@ def match():
     elif match_values[0] == "O":
         print("player 2 wins -O")
     return(v)
-    print("value of v is ",v)
+
 
 play()
